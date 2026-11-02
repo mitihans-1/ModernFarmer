@@ -1,0 +1,130 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id              String           @id @default(uuid())
+  phone           String           @unique
+  fullName        String
+  role            String           // "FARMER" | "SUPPLIER" | "BUYER" | "ADMIN"
+  language        String           @default("am") // "am" | "om" | "ti" | "en"
+  isVerified      Boolean          @default(true)
+  nationalIdFayda String?
+  cooperativeName String?
+  region          String           // "Oromia" | "Amhara" | "Sidama" | "Addis Ababa" | "Tigray"
+  zone            String           // e.g. "East Shewa", "West Gojjam"
+  woreda          String           // e.g. "Ada'a", "Bahir Dar Zuria"
+  kebele          String?
+  lat             Float?
+  lng             Float?
+  createdAt       DateTime         @default(now())
+
+  products        Product[]
+  produceListings ProduceListing[]
+  buyerOrders     Order[]          @relation("BuyerOrders")
+  sellerOrders    Order[]          @relation("SellerOrders")
+}
+
+model Product {
+  id               String   @id @default(uuid())
+  supplierId       String
+  supplier         User     @relation(fields: [supplierId], references: [id])
+  category         String   // "FERTILIZER" | "SEED" | "PESTICIDE" | "TOOLS_PPE"
+  title            String
+  description      String
+  brandOrVariety   String
+  priceEtb         Float
+  unit             String   // "50kg bag", "liter", "piece"
+  stockQuantity    Int
+  isSubsidizedCoop Boolean  @default(false)
+  region           String
+  woreda           String
+  lat              Float?
+  lng              Float?
+  imageUrl         String?
+  model3dKey       String?  // "tractor" | "sprayer" | "fertilizer_bag"
+  createdAt        DateTime @default(now())
+
+  orders           Order[]
+}
+
+model ProduceListing {
+  id              String   @id @default(uuid())
+  farmerId        String
+  farmer          User     @relation(fields: [farmerId], references: [id])
+  cropOrLivestock String   // "Teff", "Wheat", "Maize", "Coffee", "Onion", "Cattle", "Sheep"
+  variety         String   // "Magna (White)", "Sidama Washed", "Serena"
+  grade           String   // "Grade 1", "Grade 2", "Standard"
+  quantity        Float
+  unit            String   // "Quintal (100kg)", "Kg", "Head"
+  pricePerUnitEtb Float
+  region          String
+  woreda          String
+  lat             Float?
+  lng             Float?
+  description     String?
+  status          String   @default("AVAILABLE") // "AVAILABLE" | "RESERVED" | "SOLD"
+  imageUrl        String?
+  model3dKey      String?  // "teff_sheaf" | "coffee_branch" | "maize_cob"
+  createdAt       DateTime @default(now())
+
+  orders          Order[]
+}
+
+model PriceReport {
+  id          String   @id @default(uuid())
+  commodity   String
+  marketName  String   // "Addis Ababa Merkato", "Ada'a Bishoftu", "Bahir Dar Central", "Jimma Town"
+  region      String
+  unit        String   @default("Quintal")
+  minPriceEtb Float
+  maxPriceEtb Float
+  avgPriceEtb Float
+  trend       String   @default("STABLE") // "UP" | "DOWN" | "STABLE"
+  changePct   Float    @default(0.0)
+  reportDate  DateTime @default(now())
+}
+
+model Order {
+  id               String          @id @default(uuid())
+  orderNumber      String          @unique
+  orderType        String          // "INPUT_PURCHASE" | "PRODUCE_PURCHASE"
+  buyerId          String
+  buyer            User            @relation("BuyerOrders", fields: [buyerId], references: [id])
+  sellerId         String
+  seller           User            @relation("SellerOrders", fields: [sellerId], references: [id])
+  productId        String?
+  product          Product?        @relation(fields: [productId], references: [id])
+  produceListingId String?
+  produceListing   ProduceListing? @relation(fields: [produceListingId], references: [id])
+  quantity         Float
+  unitPriceEtb     Float
+  totalAmountEtb   Float
+  status           String          // "PENDING" | "CONFIRMED" | "ESCROW_HELD" | "DELIVERED" | "COMPLETED" | "CANCELLED"
+  deliveryMethod   String          // "PICKUP" | "SUPPLIER_DELIVERY" | "COOP_POINT"
+  deliveryNotes    String?
+  confirmationOtp  String          // 4-digit verification code
+  paymentMethod    String          // "TELEBIRR" | "CBE_BIRR" | "CHAPA" | "CASH_ON_DELIVERY"
+  paymentStatus    String          // "PENDING" | "ESCROW_HELD" | "RELEASED"
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
+  payments         Payment[]
+}
+
+model Payment {
+  id             String    @id @default(uuid())
+  orderId        String
+  order          Order     @relation(fields: [orderId], references: [id])
+  method         String    // "TELEBIRR" | "CBE_BIRR" | "CHAPA" | "CASH_ON_DELIVERY"
+  escrowStatus   String    // "HELD" | "RELEASED" | "REFUNDED"
+  transactionRef String
+  amountEtb      Float
+  createdAt      DateTime  @default(now())
+  releasedAt     DateTime?
+}

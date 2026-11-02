@@ -1,0 +1,6 @@
+{
+  "name": "FarmLink Ethiopia",
+  "description": "Accessible agricultural marketplace connecting Ethiopian smallholders to essential inputs and fair produce markets with real-time price transparency and vernacular support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
