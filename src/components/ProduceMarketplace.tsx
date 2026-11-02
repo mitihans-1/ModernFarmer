@@ -81,54 +81,54 @@ export const ProduceMarketplace: React.FC<ProduceMarketplaceProps> = ({
   return (
     <div className="space-y-6">
       {/* Header Bar */}
-      <div className="bg-white rounded-2xl p-5 border border-stone-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-white rounded-[24px] p-6 border border-[#E2E8F0] shadow-[0_10px_40px_rgba(15,23,42,0.08)] flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl font-bold text-stone-900 tracking-tight">{t.produceTitle}</h1>
+            <h1 className="text-xl sm:text-2xl font-black text-[#0F172A] tracking-tight">{t.produceTitle}</h1>
             <button
               onClick={handleAudioHelp}
-              className="p-1 text-emerald-700 hover:text-emerald-800 hover:bg-emerald-50 rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 text-[#2563EB] hover:bg-blue-50 rounded-xl transition-colors cursor-pointer"
               title="Audio Guidance"
             >
-              <Volume2 className="w-5 h-5" />
+              <Volume2 className="w-5 h-5 text-[#2563EB]" />
             </button>
           </div>
-          <p className="text-xs text-stone-600 mt-1 max-w-2xl">{t.produceDesc}</p>
+          <p className="text-xs sm:text-sm text-[#64748B] mt-1 max-w-2xl font-normal">{t.produceDesc}</p>
         </div>
 
         {/* Farmer Add Harvest Button */}
         {currentUser.role === 'FARMER' && (
           <button
             onClick={() => setShowAddModal(true)}
-            className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs shadow-sm transition-all cursor-pointer shrink-0"
+            className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs shadow-sm hover:shadow-md transition-all cursor-pointer shrink-0"
           >
-            <PlusCircle className="w-4 h-4" />
+            <PlusCircle className="w-4 h-4 text-white" />
             <span>{t.listHarvestBtn}</span>
           </button>
         )}
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white rounded-2xl p-4 border border-stone-200 shadow-sm space-y-3.5">
+      <div className="bg-white rounded-[24px] p-5 border border-[#E2E8F0] shadow-[0_10px_40px_rgba(15,23,42,0.08)] space-y-4">
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
-            <Search className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[#94A3B8] absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search produce (e.g. White Teff, Sidama Coffee, Fogera Onion)..."
-              className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-stone-200 bg-stone-50 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 text-stone-900 placeholder:text-stone-400"
+              className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] text-xs focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-[#2563EB] text-[#0F172A] placeholder:text-[#94A3B8]"
             />
           </div>
 
           {/* Grade Selector */}
           <div className="flex items-center gap-1.5">
-            <span className="text-xs font-semibold text-stone-500 whitespace-nowrap">{t.gradeLabel}:</span>
+            <span className="text-xs font-semibold text-[#64748B] whitespace-nowrap">{t.gradeLabel}:</span>
             <select
               value={selectedGrade}
               onChange={(e) => setSelectedGrade(e.target.value)}
-              className="px-3 py-2 rounded-xl border border-stone-200 bg-stone-50 text-xs font-medium text-stone-700"
+              className="px-3 py-2.5 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] text-xs font-semibold text-[#0F172A] focus:outline-none focus:border-[#2563EB]"
             >
               <option value="ALL">All Grades</option>
               <option value="Grade 1">Grade 1 (Superior)</option>
@@ -150,10 +150,10 @@ export const ProduceMarketplace: React.FC<ProduceMarketplaceProps> = ({
             <button
               key={crop.id}
               onClick={() => setSelectedCrop(crop.id)}
-              className={`px-3 py-1.5 rounded-lg font-medium whitespace-nowrap transition-colors cursor-pointer ${
+              className={`px-3.5 py-2 rounded-xl font-bold whitespace-nowrap transition-all cursor-pointer ${
                 selectedCrop === crop.id
-                  ? 'bg-emerald-800 text-white shadow-sm'
-                  : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+                  ? 'bg-[#2563EB] text-white shadow-xs'
+                  : 'bg-[#F8FAFC] text-[#64748B] hover:text-[#0F172A] hover:bg-slate-100 border border-[#E2E8F0]'
               }`}
             >
               {crop.label}
@@ -163,69 +163,69 @@ export const ProduceMarketplace: React.FC<ProduceMarketplaceProps> = ({
       </div>
 
       {/* Produce Listings Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredListings.map((listing) => (
           <div
             key={listing.id}
-            className="bg-white rounded-2xl border border-stone-200 shadow-sm hover:shadow-md transition-shadow p-5 flex flex-col justify-between"
+            className="bg-white rounded-[24px] border border-[#E2E8F0] hover:border-blue-400 shadow-[0_10px_40px_rgba(15,23,42,0.08)] p-6 flex flex-col justify-between transition-all duration-300 group"
           >
             <div>
-              {/* Clean Unboxed Metadata: Crop · Grade · Region · Distance */}
-              <div className="flex items-center gap-1.5 text-xs text-stone-600 mb-2 font-medium">
-                <span className="text-emerald-800 font-semibold">{listing.cropOrLivestock}</span>
+              {/* Clean Metadata: Crop · Grade · Region · Distance */}
+              <div className="flex items-center gap-1.5 text-xs text-[#64748B] mb-2 font-medium">
+                <span className="text-[#2563EB] font-bold">{listing.cropOrLivestock}</span>
                 <span aria-hidden="true">·</span>
-                <span>{listing.grade}</span>
+                <span className="bg-slate-100 text-[#0F172A] px-2 py-0.5 rounded-md font-semibold text-[11px]">{listing.grade}</span>
                 <span aria-hidden="true">·</span>
                 <span>{listing.woreda}</span>
                 {listing.distanceKm !== undefined && (
                   <>
                     <span aria-hidden="true">·</span>
-                    <span className="text-stone-700">{listing.distanceKm} km</span>
+                    <span className="text-[#334155] font-semibold">{listing.distanceKm} km</span>
                   </>
                 )}
               </div>
 
               {/* Title & Variety */}
-              <h3 className="text-base font-bold text-stone-900 leading-snug">
+              <h3 className="text-base font-bold text-[#0F172A] leading-snug group-hover:text-[#2563EB] transition-colors">
                 {listing.cropOrLivestock} — {listing.variety}
               </h3>
 
               {/* Farmer Info */}
-              <div className="flex items-center gap-1.5 text-xs text-stone-600 mt-1">
-                <UserCheck className="w-3.5 h-3.5 text-emerald-700" />
-                <span>Seller: <strong className="text-stone-800">{listing.farmerName || 'Smallholder Farmer'}</strong></span>
+              <div className="flex items-center gap-1.5 text-xs text-[#64748B] mt-1.5">
+                <UserCheck className="w-3.5 h-3.5 text-[#2563EB]" />
+                <span>Seller: <strong className="text-[#0F172A] font-semibold">{listing.farmerName || 'Smallholder Farmer'}</strong></span>
               </div>
 
               {/* Description */}
-              <p className="text-xs text-stone-600 mt-2 line-clamp-3 leading-relaxed">
+              <p className="text-xs text-[#334155] mt-2 line-clamp-3 leading-relaxed font-normal">
                 {listing.description}
               </p>
             </div>
 
             {/* Price & Quantity & Actions */}
-            <div className="mt-5 pt-4 border-t border-stone-100">
-              <div className="flex items-baseline justify-between mb-3">
+            <div className="mt-5 pt-4 border-t border-[#E2E8F0]">
+              <div className="flex items-baseline justify-between mb-3.5">
                 <div>
-                  <span className="text-xl font-extrabold text-stone-900 tabular-nums">
+                  <span className="text-2xl font-black text-[#0F172A] tabular-nums">
                     {listing.pricePerUnitEtb.toLocaleString()}
                   </span>
-                  <span className="text-xs font-semibold text-stone-700 ml-1">
+                  <span className="text-xs font-semibold text-[#64748B] ml-1">
                     ETB / {listing.unit}
                   </span>
                 </div>
 
-                <div className="text-xs text-stone-600">
-                  Vol: <strong className="text-stone-900 font-bold tabular-nums">{listing.quantity}</strong> {listing.unit}
+                <div className="text-xs text-[#64748B]">
+                  Vol: <strong className="text-[#0F172A] font-bold tabular-nums">{listing.quantity}</strong> {listing.unit}
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-2.5">
                 <button
                   onClick={() => onOrderProduce(listing)}
-                  className="w-full min-h-[44px] px-3 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-colors cursor-pointer"
+                  className="w-full min-h-[44px] px-3 py-2 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm hover:shadow-md transition-all cursor-pointer"
                 >
-                  <ShoppingCart className="w-4 h-4" />
+                  <ShoppingCart className="w-4 h-4 text-white" />
                   <span>{t.makeOfferBtn}</span>
                 </button>
 
@@ -234,9 +234,9 @@ export const ProduceMarketplace: React.FC<ProduceMarketplaceProps> = ({
                     if (listing.cropOrLivestock.toLowerCase().includes('coffee')) onOpen3D('coffee');
                     else onOpen3D('teff');
                   }}
-                  className="w-full min-h-[44px] px-3 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                  className="w-full min-h-[44px] px-3 py-2 rounded-xl bg-[#F8FAFC] hover:bg-slate-100 text-[#0F172A] border border-[#E2E8F0] font-semibold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs"
                 >
-                  <Eye className="w-4 h-4 text-stone-600" />
+                  <Eye className="w-4 h-4 text-[#2563EB]" />
                   <span>{t.inspect3D}</span>
                 </button>
               </div>
@@ -247,19 +247,19 @@ export const ProduceMarketplace: React.FC<ProduceMarketplaceProps> = ({
 
       {/* Farmer Add Produce Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-stone-200">
-            <h2 className="text-lg font-bold text-stone-900 mb-1">List Your Harvest Produce</h2>
-            <p className="text-xs text-stone-600 mb-4">Post directly to buyers without middlemen taking your margins.</p>
+        <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-[24px] max-w-lg w-full p-6 sm:p-7 shadow-[0_20px_50px_rgba(15,23,42,0.15)] border border-[#E2E8F0]">
+            <h2 className="text-lg font-black text-[#0F172A] mb-1">List Your Harvest Produce</h2>
+            <p className="text-xs text-[#64748B] mb-4">Post directly to buyers without middlemen taking your margins.</p>
 
             <form onSubmit={handleCreateSubmit} className="space-y-3.5">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-stone-700 mb-1">Commodity / Crop</label>
+                  <label className="block text-xs font-bold text-[#0F172A] mb-1">Commodity / Crop</label>
                   <select
                     value={newCrop}
                     onChange={(e) => setNewCrop(e.target.value)}
-                    className="w-full p-2.5 rounded-xl border border-stone-200 text-xs bg-stone-50"
+                    className="w-full p-2.5 rounded-xl border border-[#E2E8F0] text-xs bg-[#F8FAFC] text-[#0F172A] font-semibold"
                   >
                     <option value="Teff">Teff (ጤፍ)</option>
                     <option value="Wheat">Bread Wheat (ስንዴ)</option>
@@ -270,25 +270,25 @@ export const ProduceMarketplace: React.FC<ProduceMarketplaceProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-stone-700 mb-1">Variety Name</label>
+                  <label className="block text-xs font-bold text-[#0F172A] mb-1">Variety Name</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. Magna White / Serena"
                     value={newVariety}
                     onChange={(e) => setNewVariety(e.target.value)}
-                    className="w-full p-2.5 rounded-xl border border-stone-200 text-xs bg-stone-50"
+                    className="w-full p-2.5 rounded-xl border border-[#E2E8F0] text-xs bg-[#F8FAFC] text-[#0F172A]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-3 gap-2">
                 <div>
-                  <label className="block text-xs font-semibold text-stone-700 mb-1">Grade</label>
+                  <label className="block text-xs font-bold text-[#0F172A] mb-1">Grade</label>
                   <select
                     value={newGrade}
                     onChange={(e) => setNewGrade(e.target.value as any)}
-                    className="w-full p-2.5 rounded-xl border border-stone-200 text-xs bg-stone-50"
+                    className="w-full p-2.5 rounded-xl border border-[#E2E8F0] text-xs bg-[#F8FAFC] text-[#0F172A] font-semibold"
                   >
                     <option value="Grade 1">Grade 1</option>
                     <option value="Grade 2">Grade 2</option>
@@ -297,52 +297,52 @@ export const ProduceMarketplace: React.FC<ProduceMarketplaceProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-stone-700 mb-1">Quantity</label>
+                  <label className="block text-xs font-bold text-[#0F172A] mb-1">Quantity</label>
                   <input
                     type="number"
                     required
                     placeholder="50"
                     value={newQuantity}
                     onChange={(e) => setNewQuantity(e.target.value)}
-                    className="w-full p-2.5 rounded-xl border border-stone-200 text-xs bg-stone-50"
+                    className="w-full p-2.5 rounded-xl border border-[#E2E8F0] text-xs bg-[#F8FAFC] text-[#0F172A]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-stone-700 mb-1">Price (ETB)</label>
+                  <label className="block text-xs font-bold text-[#0F172A] mb-1">Price (ETB)</label>
                   <input
                     type="number"
                     required
                     placeholder="5400"
                     value={newPrice}
                     onChange={(e) => setNewPrice(e.target.value)}
-                    className="w-full p-2.5 rounded-xl border border-stone-200 text-xs bg-stone-50"
+                    className="w-full p-2.5 rounded-xl border border-[#E2E8F0] text-xs bg-[#F8FAFC] text-[#0F172A]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-stone-700 mb-1">Description & Storage Quality</label>
+                <label className="block text-xs font-bold text-[#0F172A] mb-1">Description & Storage Quality</label>
                 <textarea
                   rows={2}
                   placeholder="e.g. Clean double-sieved grain, low moisture, bagged in Ada'a."
                   value={newDesc}
                   onChange={(e) => setNewDesc(e.target.value)}
-                  className="w-full p-2.5 rounded-xl border border-stone-200 text-xs bg-stone-50"
+                  className="w-full p-2.5 rounded-xl border border-[#E2E8F0] text-xs bg-[#F8FAFC] text-[#0F172A]"
                 />
               </div>
 
-              <div className="flex justify-end gap-2 pt-3 border-t border-stone-100">
+              <div className="flex justify-end gap-2.5 pt-3 border-t border-[#E2E8F0]">
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2 rounded-xl text-xs font-medium text-stone-600 hover:bg-stone-100"
+                  className="px-4 py-2 rounded-xl text-xs font-semibold text-[#64748B] hover:bg-slate-100 transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs shadow-sm"
+                  className="px-5 py-2.5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs shadow-sm hover:shadow-md transition-all"
                 >
                   Post Listing
                 </button>

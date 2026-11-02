@@ -223,10 +223,13 @@ export default function App() {
 
   if (!currentUser) {
     return (
-      <div className="min-h-screen bg-stone-900 flex items-center justify-center text-stone-200">
-        <div className="text-center space-y-3">
-          <div className="w-10 h-10 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="text-sm font-semibold tracking-wide">Connecting to FarmLink Ethiopia...</p>
+      <div 
+        className="min-h-screen flex items-center justify-center text-[#0F172A]"
+        style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #EEF5FF 100%)' }}
+      >
+        <div className="text-center space-y-3 bg-white p-8 rounded-[24px] border border-[#E2E8F0] shadow-[0_10px_40px_rgba(15,23,42,0.08)]">
+          <div className="w-10 h-10 border-3 border-[#2563EB] border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="text-sm font-semibold tracking-wide text-[#0F172A]">Connecting to FarmLink Ethiopia...</p>
         </div>
       </div>
     );
@@ -267,7 +270,7 @@ export default function App() {
 
       {/* Toast Notification */}
       {notification && (
-        <div className="fixed top-20 right-4 z-50 bg-stone-900 text-stone-100 text-xs px-4 py-3 rounded-2xl shadow-xl border border-stone-700/80 max-w-sm transition-all">
+        <div className="fixed top-20 right-4 z-50 bg-[#0F172A] text-white text-xs px-4 py-3 rounded-2xl shadow-xl border border-slate-800 max-w-sm transition-all">
           {notification}
         </div>
       )}
@@ -329,12 +332,12 @@ export default function App() {
 
         {activeTab === '3d' && (
           <div className="space-y-4">
-            <div className="bg-white rounded-2xl p-4 border border-stone-200 shadow-sm flex items-center justify-between">
+            <div className="bg-white rounded-[24px] p-6 border border-[#E2E8F0] shadow-[0_10px_40px_rgba(15,23,42,0.08)] flex items-center justify-between">
               <div>
-                <h2 className="text-base font-bold text-stone-900">
+                <h2 className="text-base font-bold text-[#0F172A]">
                   {t.tab3DViewer} — Procedural Ethiopian Agri Inspector
                 </h2>
-                <p className="text-xs text-stone-600">
+                <p className="text-xs text-[#64748B] mt-1">
                   Inspect grain spikelets, coffee nodes, and tractor mechanisms in interactive 3D.
                 </p>
               </div>
@@ -450,14 +453,14 @@ export default function App() {
           <ShoppingBag className="w-4 h-4 mb-1" />
           <span className="text-[9px] tracking-tight truncate">{t.tabOrders}</span>
           {orders.filter((o) => o.status === 'ESCROW_HELD').length > 0 && (
-            <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-emerald-400" />
+            <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#2563EB]" />
           )}
         </button>
 
         <button
           onClick={() => setActiveTab('3d')}
           className={`flex flex-col items-center justify-center h-full min-h-[44px] cursor-pointer ${
-            activeTab === '3d' ? 'text-emerald-400 font-bold' : 'hover:text-stone-200'
+            activeTab === '3d' ? 'text-[#2563EB] font-bold' : 'hover:text-[#0F172A]'
           }`}
         >
           <Layers className="w-4 h-4 mb-1" />
@@ -469,21 +472,21 @@ export default function App() {
       {allUsers.length > 0 && currentUser && (
         <aside 
           aria-label="Demo Persona Switcher"
-          className="fixed bottom-20 lg:bottom-4 right-4 z-40 hidden sm:flex items-center gap-2.5 bg-[#041a0e]/95 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-emerald-600/50 shadow-2xl text-xs text-stone-200"
+          className="fixed bottom-20 lg:bottom-4 right-4 z-40 hidden sm:flex items-center gap-2.5 bg-[#0F172A]/90 backdrop-blur-md px-4 py-2 rounded-full border border-slate-700 shadow-xl text-xs text-slate-200"
         >
-          <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-emerald-300 font-bold">{currentUser.role}:</span>
+          <span className="flex h-2 w-2 rounded-full bg-[#3B82F6] animate-pulse" />
+          <span className="text-blue-400 font-bold">{currentUser.role}:</span>
           <span className="text-white font-semibold truncate max-w-[100px]">{currentUser.fullName.split(' ')[0]}</span>
-          <span className="text-emerald-800">|</span>
+          <span className="text-slate-600">|</span>
           <div className="flex items-center gap-1">
             {allUsers.map((u) => (
               <button
                 key={u.id}
                 onClick={() => handleSwitchUser(u.id)}
-                className={`px-2 py-0.5 rounded-lg text-[10px] font-bold transition-all cursor-pointer ${
+                className={`px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all cursor-pointer ${
                   u.id === currentUser.id
-                    ? 'bg-emerald-600 text-white shadow-xs'
-                    : 'text-stone-300 hover:text-white hover:bg-emerald-900/60'
+                    ? 'bg-[#2563EB] text-white shadow-xs'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-800'
                 }`}
                 title={`Switch to ${u.fullName} (${u.role})`}
               >

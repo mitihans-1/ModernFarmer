@@ -177,11 +177,11 @@ export const AgriChatbot: React.FC<AgriChatbotProps> = ({ currentUser, language 
   };
 
   return (
-    <div className="bg-white rounded-3xl border border-stone-200 shadow-sm overflow-hidden flex flex-col h-[700px] max-h-[82vh]">
+    <div className="bg-white rounded-[24px] border border-[#E2E8F0] shadow-[0_10px_40px_rgba(15,23,42,0.08)] overflow-hidden flex flex-col h-[700px] max-h-[82vh]">
       {/* Top Chat Header */}
-      <div className="bg-stone-900 text-stone-100 p-4 border-b border-stone-800 flex items-center justify-between gap-3 shrink-0">
+      <div className="bg-[#0F172A] text-white p-5 border-b border-slate-800 flex items-center justify-between gap-3 shrink-0">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shadow-xs">
+          <div className="w-10 h-10 rounded-xl bg-[#2563EB] text-white flex items-center justify-center shadow-xs">
             <Bot className="w-5 h-5" />
           </div>
           <div>
@@ -189,11 +189,11 @@ export const AgriChatbot: React.FC<AgriChatbotProps> = ({ currentUser, language 
               <h2 className="text-sm font-bold text-white tracking-tight">
                 Ato Desta · Ethiopian Agri Advisor
               </h2>
-              <span className="text-[10px] text-emerald-400 font-semibold bg-emerald-950/80 px-2 py-0.5 rounded-full border border-emerald-800/60">
+              <span className="text-[10px] text-blue-400 font-semibold bg-blue-950/80 px-2 py-0.5 rounded-full border border-blue-800/60">
                 Maps Grounded
               </span>
             </div>
-            <p className="text-[11px] text-stone-400">
+            <p className="text-[11px] text-slate-400">
               Extension knowledge for {currentUser.woreda}, {currentUser.region}
             </p>
           </div>
@@ -202,13 +202,13 @@ export const AgriChatbot: React.FC<AgriChatbotProps> = ({ currentUser, language 
         {/* Model Speed & Complexity Selector */}
         <div className="flex items-center gap-2">
           {/* Segmented Model Switcher */}
-          <div className="hidden sm:flex items-center bg-stone-800 p-0.5 rounded-xl border border-stone-700/80 text-xs">
+          <div className="hidden sm:flex items-center bg-slate-800 p-0.5 rounded-xl border border-slate-700/80 text-xs">
             <button
               onClick={() => setTaskComplexity('fast')}
               className={`px-2.5 py-1 rounded-lg font-medium flex items-center gap-1 transition-all cursor-pointer ${
                 taskComplexity === 'fast'
-                  ? 'bg-emerald-700 text-white shadow-xs'
-                  : 'text-stone-400 hover:text-stone-200'
+                  ? 'bg-[#2563EB] text-white shadow-xs'
+                  : 'text-slate-400 hover:text-white'
               }`}
               title="Fast: gemini-3.1-flash-lite"
             >
@@ -219,8 +219,8 @@ export const AgriChatbot: React.FC<AgriChatbotProps> = ({ currentUser, language 
               onClick={() => setTaskComplexity('general')}
               className={`px-2.5 py-1 rounded-lg font-medium flex items-center gap-1 transition-all cursor-pointer ${
                 taskComplexity === 'general'
-                  ? 'bg-emerald-700 text-white shadow-xs'
-                  : 'text-stone-400 hover:text-stone-200'
+                  ? 'bg-[#2563EB] text-white shadow-xs'
+                  : 'text-slate-400 hover:text-white'
               }`}
               title="General + Google Maps: gemini-3.8-flash"
             >
@@ -231,8 +231,8 @@ export const AgriChatbot: React.FC<AgriChatbotProps> = ({ currentUser, language 
               onClick={() => setTaskComplexity('complex')}
               className={`px-2.5 py-1 rounded-lg font-medium flex items-center gap-1 transition-all cursor-pointer ${
                 taskComplexity === 'complex'
-                  ? 'bg-emerald-700 text-white shadow-xs'
-                  : 'text-stone-400 hover:text-stone-200'
+                  ? 'bg-[#2563EB] text-white shadow-xs'
+                  : 'text-slate-400 hover:text-white'
               }`}
               title="Complex Agronomy: gemini-4-argon"
             >
@@ -243,7 +243,7 @@ export const AgriChatbot: React.FC<AgriChatbotProps> = ({ currentUser, language 
 
           <button
             onClick={handleClearHistory}
-            className="p-2 text-stone-400 hover:text-stone-100 hover:bg-stone-800 rounded-xl transition-colors cursor-pointer"
+            className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
             title="Clear Chat Thread"
           >
             <Trash2 className="w-4 h-4" />
@@ -252,15 +252,15 @@ export const AgriChatbot: React.FC<AgriChatbotProps> = ({ currentUser, language 
       </div>
 
       {/* Quick Prompts Carousel Bar */}
-      <div className="bg-stone-50 border-b border-stone-200 px-4 py-2 flex items-center gap-2 overflow-x-auto text-xs shrink-0">
-        <span className="text-[10px] text-stone-500 font-bold uppercase tracking-wider shrink-0">
+      <div className="bg-[#F8FAFC] border-b border-[#E2E8F0] px-4 py-2.5 flex items-center gap-2 overflow-x-auto text-xs shrink-0">
+        <span className="text-[10px] text-[#64748B] font-bold uppercase tracking-wider shrink-0">
           Ask:
         </span>
         {quickPrompts.map((qp, idx) => (
           <button
             key={idx}
             onClick={() => handleSendMessage(qp.prompt)}
-            className="px-2.5 py-1 rounded-lg bg-white hover:bg-emerald-50 text-stone-700 hover:text-emerald-800 border border-stone-200 text-xs font-medium whitespace-nowrap transition-colors shadow-2xs cursor-pointer shrink-0"
+            className="px-3 py-1.5 rounded-xl bg-white hover:bg-blue-50 text-[#334155] hover:text-[#2563EB] border border-[#E2E8F0] text-xs font-medium whitespace-nowrap transition-colors shadow-2xs cursor-pointer shrink-0"
           >
             {qp.label}
           </button>
@@ -268,7 +268,7 @@ export const AgriChatbot: React.FC<AgriChatbotProps> = ({ currentUser, language 
       </div>
 
       {/* Messages Scrollable Thread */}
-      <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5 bg-stone-50/50">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5 bg-[#F8FAFC]">
         {messages.map((msg) => {
           const isUser = msg.role === 'user';
           return (
@@ -281,7 +281,7 @@ export const AgriChatbot: React.FC<AgriChatbotProps> = ({ currentUser, language 
               {/* Avatar */}
               <div
                 className={`w-8 h-8 rounded-xl flex items-center justify-center text-white shrink-0 mt-0.5 shadow-2xs ${
-                  isUser ? 'bg-stone-800' : 'bg-emerald-700'
+                  isUser ? 'bg-[#0F172A]' : 'bg-[#2563EB]'
                 }`}
               >
                 {isUser ? <UserIcon className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
@@ -292,8 +292,8 @@ export const AgriChatbot: React.FC<AgriChatbotProps> = ({ currentUser, language 
                 <div
                   className={`p-4 rounded-2xl text-xs sm:text-[13px] leading-relaxed shadow-2xs ${
                     isUser
-                      ? 'bg-emerald-800 text-white rounded-tr-xs'
-                      : 'bg-white text-stone-900 border border-stone-200 rounded-tl-xs'
+                      ? 'bg-[#2563EB] text-white rounded-tr-xs'
+                      : 'bg-white text-[#0F172A] border border-[#E2E8F0] rounded-tl-xs shadow-[0_4px_20px_rgba(15,23,42,0.04)]'
                   }`}
                 >
                   {/* Clean Text with line breaks */}
@@ -301,9 +301,9 @@ export const AgriChatbot: React.FC<AgriChatbotProps> = ({ currentUser, language 
 
                   {/* Google Maps Grounded Places Links */}
                   {msg.groundingPlaces && msg.groundingPlaces.length > 0 && (
-                    <div className="mt-3.5 pt-3 border-t border-stone-100 space-y-2">
-                      <div className="flex items-center gap-1.5 text-[11px] font-bold text-emerald-800 uppercase tracking-wider">
-                        <MapPin className="w-3.5 h-3.5 text-emerald-600" />
+                    <div className="mt-3.5 pt-3 border-t border-[#E2E8F0] space-y-2">
+                      <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#2563EB] uppercase tracking-wider">
+                        <MapPin className="w-3.5 h-3.5 text-[#2563EB]" />
                         <span>Google Maps Grounded Locations:</span>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -313,10 +313,10 @@ export const AgriChatbot: React.FC<AgriChatbotProps> = ({ currentUser, language 
                             href={place.uri}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-2.5 rounded-xl bg-stone-50 hover:bg-emerald-50 border border-stone-200 hover:border-emerald-500 text-stone-800 hover:text-emerald-900 flex items-center justify-between gap-2 text-xs font-semibold transition-all group"
+                            className="p-2.5 rounded-xl bg-[#F8FAFC] hover:bg-blue-50 border border-[#E2E8F0] hover:border-[#2563EB] text-[#0F172A] hover:text-[#2563EB] flex items-center justify-between gap-2 text-xs font-semibold transition-all group"
                           >
                             <span className="truncate">{place.title}</span>
-                            <ExternalLink className="w-3.5 h-3.5 text-stone-400 group-hover:text-emerald-700 shrink-0" />
+                            <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#2563EB] shrink-0" />
                           </a>
                         ))}
                       </div>
@@ -327,8 +327,8 @@ export const AgriChatbot: React.FC<AgriChatbotProps> = ({ currentUser, language 
                   <div
                     className={`mt-2.5 pt-2 border-t flex items-center justify-between text-[10px] ${
                       isUser
-                        ? 'border-emerald-700/60 text-emerald-200'
-                        : 'border-stone-100 text-stone-600'
+                        ? 'border-blue-400/40 text-blue-100'
+                        : 'border-[#E2E8F0] text-[#64748B]'
                     }`}
                   >
                     <span>{msg.timestamp}</span>
@@ -338,7 +338,7 @@ export const AgriChatbot: React.FC<AgriChatbotProps> = ({ currentUser, language 
                       {!isUser && (
                         <button
                           onClick={() => speakMessage(msg.text, language)}
-                          className="hover:text-stone-900 text-stone-600 p-0.5 rounded cursor-pointer"
+                          className="hover:text-[#2563EB] text-[#64748B] p-0.5 rounded cursor-pointer transition-colors"
                           title="Listen in vernacular"
                         >
                           <Volume2 className="w-3.5 h-3.5" />
@@ -354,11 +354,11 @@ export const AgriChatbot: React.FC<AgriChatbotProps> = ({ currentUser, language 
 
         {isLoading && (
           <div className="flex items-start gap-3 max-w-lg">
-            <div className="w-8 h-8 rounded-xl bg-emerald-700 text-white flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-xl bg-[#2563EB] text-white flex items-center justify-center shrink-0">
               <Bot className="w-4 h-4" />
             </div>
-            <div className="bg-white p-3.5 rounded-2xl rounded-tl-xs border border-stone-200 shadow-2xs flex items-center gap-2 text-xs text-stone-500">
-              <div className="w-2 h-2 rounded-full bg-emerald-600 animate-ping" />
+            <div className="bg-white p-3.5 rounded-2xl rounded-tl-xs border border-[#E2E8F0] shadow-2xs flex items-center gap-2 text-xs text-[#64748B]">
+              <div className="w-2 h-2 rounded-full bg-[#2563EB] animate-ping" />
               <span>Ato Desta consulting agricultural maps and models...</span>
             </div>
           </div>
@@ -368,7 +368,7 @@ export const AgriChatbot: React.FC<AgriChatbotProps> = ({ currentUser, language 
       </div>
 
       {/* Input Bar */}
-      <div className="p-3 sm:p-4 bg-white border-t border-stone-200 shrink-0">
+      <div className="p-4 bg-white border-t border-[#E2E8F0] shrink-0">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -387,13 +387,13 @@ export const AgriChatbot: React.FC<AgriChatbotProps> = ({ currentUser, language 
                 ? 'Gaaffii qonnaa keessan asitti gaafadhaa (fkn. yeroo sanyii, xaa’oo, kuusaa)...'
                 : 'Ask Ato Desta (e.g. fertilizer rate per hectare, nearby depots, Teff planting)...'
             }
-            className="flex-1 px-4 py-3 rounded-2xl border border-stone-200 bg-stone-50 text-xs sm:text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-emerald-600 placeholder:text-stone-400"
+            className="flex-1 px-4 py-3 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] text-xs sm:text-sm text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
           />
 
           <button
             type="submit"
             disabled={!inputMessage.trim() || isLoading}
-            className="h-11 px-5 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all disabled:opacity-40 cursor-pointer shrink-0"
+            className="h-11 px-5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all disabled:opacity-40 cursor-pointer shrink-0"
           >
             <span>Send</span>
             <Send className="w-4 h-4" />

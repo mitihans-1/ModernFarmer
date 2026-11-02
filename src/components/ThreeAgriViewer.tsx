@@ -571,21 +571,21 @@ export const ThreeAgriViewer: React.FC<ThreeAgriViewerProps> = ({
   };
 
   return (
-    <div className="relative w-full h-[520px] rounded-2xl overflow-hidden bg-stone-900 border border-stone-800 shadow-xl flex flex-col">
+    <div className="relative w-full h-[520px] rounded-[24px] overflow-hidden bg-slate-900 border border-slate-800 shadow-[0_10px_40px_rgba(15,23,42,0.12)] flex flex-col">
       {/* Top Header Badge */}
       <div className="absolute top-3 left-4 right-4 z-20 flex items-center justify-between pointer-events-none">
-        <div className="bg-stone-900/90 border border-stone-700/60 rounded-xl px-3 py-1.5 shadow pointer-events-auto flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-emerald-400" />
-          <span className="text-xs font-semibold text-stone-100">
+        <div className="bg-[#0F172A]/90 border border-slate-700/80 rounded-xl px-3.5 py-1.5 shadow-md pointer-events-auto flex items-center gap-2 backdrop-blur-xs">
+          <Sparkles className="w-4 h-4 text-blue-400" />
+          <span className="text-xs font-semibold text-white">
             {labels[activeModel][language] || labels[activeModel].en}
           </span>
-          <span className="text-[11px] text-stone-400">· 3D Inspection</span>
+          <span className="text-[11px] text-slate-400">· 3D Inspection</span>
         </div>
 
         {onClose && (
           <button
             onClick={onClose}
-            className="bg-stone-900/90 hover:bg-stone-800 text-stone-300 hover:text-white px-3 py-1.5 rounded-xl border border-stone-700/60 text-xs font-medium pointer-events-auto transition-colors"
+            className="bg-[#0F172A]/90 hover:bg-slate-800 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl border border-slate-700/80 text-xs font-medium pointer-events-auto transition-colors"
           >
             Close 3D
           </button>
@@ -597,7 +597,7 @@ export const ThreeAgriViewer: React.FC<ThreeAgriViewerProps> = ({
 
       {/* Selected Part Callout Badge */}
       {selectedPart && (
-        <div className="absolute top-16 left-1/2 -translate-x-1/2 z-20 bg-emerald-950/90 border border-emerald-500/50 text-emerald-200 px-3 py-1 rounded-full text-xs font-medium shadow-lg backdrop-blur-sm pointer-events-none">
+        <div className="absolute top-16 left-1/2 -translate-x-1/2 z-20 bg-blue-950/90 border border-blue-500/50 text-blue-200 px-3.5 py-1 rounded-full text-xs font-medium shadow-lg backdrop-blur-sm pointer-events-none">
           Inspecting: {selectedPart}
         </div>
       )}
@@ -612,7 +612,7 @@ export const ThreeAgriViewer: React.FC<ThreeAgriViewerProps> = ({
         <div className="flex justify-center mb-1">
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="flex items-center gap-1.5 bg-stone-900/95 hover:bg-stone-800 text-stone-300 text-[11px] font-medium px-3 py-1 rounded-full border border-stone-700 shadow-md transition-colors"
+            className="flex items-center gap-1.5 bg-[#0F172A]/95 hover:bg-slate-800 text-slate-300 text-[11px] font-medium px-3.5 py-1 rounded-full border border-slate-700 shadow-md transition-colors cursor-pointer"
           >
             {isCollapsed ? (
               <>
@@ -627,7 +627,7 @@ export const ThreeAgriViewer: React.FC<ThreeAgriViewerProps> = ({
         </div>
 
         {/* Dock Panel */}
-        <div className="bg-stone-900/95 border border-stone-800 rounded-2xl p-3 shadow-2xl backdrop-blur-md">
+        <div className="bg-[#0F172A]/95 border border-slate-800 rounded-2xl p-3.5 shadow-2xl backdrop-blur-md">
           {/* Top Row: Model Selection */}
           <div className="grid grid-cols-3 gap-1.5 mb-2.5">
             <button
@@ -636,10 +636,10 @@ export const ThreeAgriViewer: React.FC<ThreeAgriViewerProps> = ({
                 setSelectedPart(null);
                 setExplodeFactor(0);
               }}
-              className={`py-1.5 px-2 rounded-lg text-xs font-medium transition-all text-center truncate ${
+              className={`py-1.5 px-2 rounded-xl text-xs font-medium transition-all text-center truncate cursor-pointer ${
                 activeModel === 'teff'
-                  ? 'bg-emerald-700 text-white shadow-sm'
-                  : 'bg-stone-800/80 text-stone-300 hover:bg-stone-800'
+                  ? 'bg-[#2563EB] text-white shadow-sm'
+                  : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800'
               }`}
             >
               🌾 Magna Teff
@@ -650,10 +650,10 @@ export const ThreeAgriViewer: React.FC<ThreeAgriViewerProps> = ({
                 setSelectedPart(null);
                 setExplodeFactor(0);
               }}
-              className={`py-1.5 px-2 rounded-lg text-xs font-medium transition-all text-center truncate ${
+              className={`py-1.5 px-2 rounded-xl text-xs font-medium transition-all text-center truncate cursor-pointer ${
                 activeModel === 'coffee'
-                  ? 'bg-emerald-700 text-white shadow-sm'
-                  : 'bg-stone-800/80 text-stone-300 hover:bg-stone-800'
+                  ? 'bg-[#2563EB] text-white shadow-sm'
+                  : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800'
               }`}
             >
               ☕ Sidama Coffee
@@ -664,10 +664,10 @@ export const ThreeAgriViewer: React.FC<ThreeAgriViewerProps> = ({
                 setSelectedPart(null);
                 setExplodeFactor(0);
               }}
-              className={`py-1.5 px-2 rounded-lg text-xs font-medium transition-all text-center truncate ${
+              className={`py-1.5 px-2 rounded-xl text-xs font-medium transition-all text-center truncate cursor-pointer ${
                 activeModel === 'tractor'
-                  ? 'bg-emerald-700 text-white shadow-sm'
-                  : 'bg-stone-800/80 text-stone-300 hover:bg-stone-800'
+                  ? 'bg-[#2563EB] text-white shadow-sm'
+                  : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800'
               }`}
             >
               🚜 Agri Tractor
@@ -675,11 +675,11 @@ export const ThreeAgriViewer: React.FC<ThreeAgriViewerProps> = ({
           </div>
 
           {/* Bottom Row: Controls */}
-          <div className="flex items-center justify-between gap-3 text-xs text-stone-300 pt-1 border-t border-stone-800/80">
+          <div className="flex items-center justify-between gap-3 text-xs text-slate-300 pt-1 border-t border-slate-800/80">
             {/* Explode / Deconstruct Slider */}
             <div className="flex items-center gap-2 flex-1">
-              <Layers className="w-3.5 h-3.5 text-stone-400 shrink-0" />
-              <span className="text-[11px] text-stone-400 shrink-0">Deconstruct</span>
+              <Layers className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+              <span className="text-[11px] text-slate-400 shrink-0">Deconstruct</span>
               <input
                 type="range"
                 min="0"
@@ -687,7 +687,7 @@ export const ThreeAgriViewer: React.FC<ThreeAgriViewerProps> = ({
                 step="0.05"
                 value={explodeFactor}
                 onChange={(e) => setExplodeFactor(parseFloat(e.target.value))}
-                className="w-full accent-emerald-500 h-1.5 bg-stone-700 rounded-lg cursor-pointer"
+                className="w-full accent-[#2563EB] h-1.5 bg-slate-700 rounded-lg cursor-pointer"
               />
             </div>
 
@@ -695,10 +695,10 @@ export const ThreeAgriViewer: React.FC<ThreeAgriViewerProps> = ({
             <div className="flex items-center gap-1.5 shrink-0">
               <button
                 onClick={() => setAutoRotate(!autoRotate)}
-                className={`p-1.5 rounded-lg border text-[11px] flex items-center gap-1 transition-colors ${
+                className={`p-1.5 rounded-lg border text-[11px] flex items-center gap-1 transition-colors cursor-pointer ${
                   autoRotate
-                    ? 'border-emerald-600 bg-emerald-950/60 text-emerald-300'
-                    : 'border-stone-700 bg-stone-800 text-stone-400'
+                    ? 'border-[#2563EB] bg-blue-950/60 text-blue-300'
+                    : 'border-slate-700 bg-slate-800 text-slate-400'
                 }`}
                 title="Toggle Auto-Rotation"
               >
@@ -708,7 +708,7 @@ export const ThreeAgriViewer: React.FC<ThreeAgriViewerProps> = ({
 
               <button
                 onClick={resetCamera}
-                className="p-1.5 rounded-lg border border-stone-700 bg-stone-800 hover:bg-stone-700 text-stone-300 text-[11px] flex items-center gap-1 transition-colors"
+                className="p-1.5 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] flex items-center gap-1 transition-colors cursor-pointer"
                 title="Reset Camera Target"
               >
                 <ZoomIn className="w-3.5 h-3.5" />
